@@ -1,0 +1,103 @@
+[
+  {
+    "node": 0,
+    "idlist": [
+      0,
+      1
+    ],
+    "description": "What is the capital of France?",
+    "children": [
+      {
+        "node": 1,
+        "idlist": [
+          1
+        ],
+        "children": [
+          {
+            "node": 3,
+            "idlist": [
+              2
+            ],
+            "children": [],
+            "scores": [
+              0.0
+            ],
+            "additionals": [
+              {}
+            ],
+            "label": "[2]",
+            "count": 1,
+            "counts": [],
+            "total_score": 0.0,
+            "avg_score": 0.0,
+            "color": "#ff0000",
+            "text": "<span style='color:blue;'></span><span style='color:black;'>[0, 1]</span><span style='color:blue;'></span><span style='color:black;'>[1]</span><span style='color:blue;'></span><span style='color:red;'>[2]</span>"
+          },
+          {
+            "node": 4,
+            "idlist": [
+              4
+            ],
+            "children": [],
+            "scores": [
+              0.0
+            ],
+            "additionals": [
+              {}
+            ],
+            "label": "[4]",
+            "count": 1,
+            "counts": [],
+            "total_score": 0.0,
+            "avg_score": 0.0,
+            "color": "#ff0000",
+            "text": "<span style='color:blue;'></span><span style='color:black;'>[0, 1]</span><span style='color:blue;'></span><span style='color:black;'>[1]</span><span style='color:blue;'></span><span style='color:red;'>[4]</span>"
+          }
+        ],
+        "label": "[1]",
+        "count": 2,
+        "counts": [
+          1,
+          1
+        ],
+        "total_score": 0.0,
+        "avg_score": 0.0,
+        "color": "#ff0000",
+        "text": "<span style='color:blue;'></span><span style='color:black;'>[0, 1]</span><span style='color:blue;'></span><span style='color:red;'>[1]</span>"
+      },
+      {
+        "node": 2,
+        "idlist": [
+          2,
+          3
+        ],
+        "children": [],
+        "scores": [
+          1.0,
+          0.0
+        ],
+        "additionals": [
+          {},
+          {}
+        ],
+        "label": "[2, 3]",
+        "count": 2,
+        "counts": [],
+        "total_score": 1.0,
+        "avg_score": 0.5,
+        "color": "#7f7f00",
+        "text": "<span style='color:blue;'></span><span style='color:black;'>[0, 1]</span><span style='color:blue;'></span><span style='color:red;'>[2, 3]</span>"
+      }
+    ],
+    "label": "[0, 1]",
+    "count": 4,
+    "counts": [
+      2,
+      2
+    ],
+    "total_score": 1.0,
+    "avg_score": 0.25,
+    "color": "#bf3f00",
+    "text": "<span style='color:blue;'></span><span style='color:red;'>[0, 1]</span>"
+  }
+]

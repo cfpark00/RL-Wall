@@ -1,0 +1,24 @@
+batch_size: 64
+dataset_path: cfpark00/toy-multistep-v5-15
+dataset_split: train
+instruct_mode: false
+model_name: cfpark00/toy-multistep-v5
+model_parallel: false
+save_path: ./data/sft/v5/toy-multistep-v5-15
+train_max_length: 128
+training_arguments:
+  bf16: false
+  gradient_accumulation_steps: 1
+  learning_rate: 0.001
+  logging_steps: 10
+  lr_scheduler_type: linear
+  num_train_epochs: 1
+  save_only_model: true
+  save_steps: 0.05
+  save_strategy: steps
+  warmup_ratio: 0.05
+wandb:
+  project_name: toy-multistep-reasoning
+  run_name: toy-multistep-v5-15
+
+
