@@ -1,0 +1,3 @@
+[submodule "synthetic/rl/verl"]
+	path = synthetic/rl/verl
+	url = git@github.com:cfpark00/verl.git
