@@ -1,0 +1,14 @@
+#baseline
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-2.5-1.5b-instruct/math_500/temp=1.0_n=32_ntokens=8192" --temperature 1.0 --n 32 --max_tokens 8192 --tensor_parallel_size 4 --prompt_suffix "_boxed"
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-2.5-1.5b-instruct/math_500/temp=1.0_n=128_ntokens=8192" --temperature 1.0 --n 128 --max_tokens 8192 --tensor_parallel_size 2 --prompt_suffix "_boxed"
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-2.5-1.5b-instruct/math_500/temp=0.0_n=1_ntokens=8192" --temperature 0.0 --n 1 --max_tokens 8192 --tensor_parallel_size 4 --prompt_suffix "_boxed"
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_train --exp_dir "./data/new_evals_03_03/qwen-2.5-1.5b-instruct/math_train/temp=1.0_n=32_ntokens=8192" --temperature 1.0 --n 32 --max_tokens 8192 --tensor_parallel_size 4 --prompt_suffix "_boxed"
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_train --exp_dir "./data/new_evals_03_03/qwen-2.5-1.5b-instruct/math_train/temp=0.0_n=1_ntokens=8192" --temperature 0.0 --n 1 --max_tokens 8192 --tensor_parallel_size 4 --prompt_suffix "_boxed"
+#gsm8k
+python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct --dataset_name gsm8k_train --exp_dir "./data/new_evals_03_03/qwen-1.5b/qwen-2.5-1.5b-instruct/gsm8k_train/temp=1.0_n=16_ntokens=8192" --temperature 1.0 --n 16 --max_tokens 8192 --tensor_parallel_size 2 --prompt_suffix "_boxed"
+
+#post rl
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-grpo-math-v1-130 --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-2.5-1.5b-instruct-grpo-math-v1-130/math_500/temp=1.0_n=32_ntokens=8192" --temperature 1.0 --n 32 --max_tokens 8192 --tensor_parallel_size 4 --prompt_suffix "_boxed"
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-grpo-math-v1-130 --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-2.5-1.5b-instruct-grpo-math-v1-130/math_500/temp=0.0_n=1_ntokens=8192" --temperature 0.0 --n 1 --max_tokens 8192 --tensor_parallel_size 4 --prompt_suffix "_boxed"
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-grpo-math-v1-130 --dataset_name math_train --exp_dir "./data/new_evals_03_03/qwen-2.5-1.5b-instruct-grpo-math-v1-130/math_train/temp=1.0_n=32_ntokens=8192" --temperature 1.0 --n 32 --max_tokens 8192 --tensor_parallel_size 4 --prompt_suffix "_boxed"
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-grpo-math-v1-130 --dataset_name math_train --exp_dir "./data/new_evals_03_03/qwen-2.5-1.5b-instruct-grpo-math-v1-130/math_train/temp=0.0_n=1_ntokens=8192" --temperature 0.0 --n 1 --max_tokens 8192 --tensor_parallel_size 4 --prompt_suffix "_boxed"

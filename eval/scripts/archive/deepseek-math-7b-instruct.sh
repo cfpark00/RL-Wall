@@ -1,0 +1,1 @@
+python3 eval.py --model_name deepseek-math-7b-instruct --dataset_name math_500 --exp_dir "./data/baselines/deepseek-math-7b-instruct/math_500/temp=1.0_seed=none" --temperature 1.0

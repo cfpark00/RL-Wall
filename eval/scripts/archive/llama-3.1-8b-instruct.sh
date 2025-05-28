@@ -1,0 +1,1 @@
+python3 eval.py --model_name llama-3.1-8b-instruct --dataset_name math_500 --exp_dir "./data/baselines/llama-3.1-8b-instruct/math_500/temp=1.0_seed=none"

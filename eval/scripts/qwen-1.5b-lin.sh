@@ -1,0 +1,13 @@
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-lin --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-1.5b/qwen-2.5-1.5b-instruct-lin/math_500/temp=0.0_n=1_ntokens=32768" --temperature 0.0 --n 1 --max_tokens 32768 --tensor_parallel_size 2 --prompt_suffix "_boxed"
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-lin --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-1.5b/qwen-2.5-1.5b-instruct-lin/math_500/temp=0.5_n=4_ntokens=32768" --temperature 0.5 --n 4 --max_tokens 32768 --tensor_parallel_size 2 --prompt_suffix "_boxed"
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-lin --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-1.5b/qwen-2.5-1.5b-instruct-lin/math_500/temp=1.0_n=4_ntokens=32768" --temperature 1.0 --n 4 --max_tokens 32768 --tensor_parallel_size 2 --prompt_suffix "_boxed"
+
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-lin-v2 --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-1.5b/qwen-2.5-1.5b-instruct-lin-v2/math_500/temp=0.0_n=1_ntokens=32768" --temperature 0.0 --n 1 
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-lin-v2 --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-1.5b/qwen-2.5-1.5b-instruct-lin-v2/math_500/temp=0.5_n=4_ntokens=32768" --temperature 0.5 --n 4
+#python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-lin-v2 --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-1.5b/qwen-2.5-1.5b-instruct-lin-v2/math_500/temp=1.0_n=4_ntokens=32768" --temperature 1.0 --n 4
+
+python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-lin-v3 --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-1.5b/qwen-2.5-1.5b-instruct-lin-v3/math_500/temp=0.0_n=1_ntokens=32768" --temperature 0.0 --n 1
+python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-lin-v4 --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-1.5b/qwen-2.5-1.5b-instruct-lin-v4/math_500/temp=0.0_n=1_ntokens=32768" --temperature 0.0 --n 1
+
+python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-lin-v3 --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-1.5b/qwen-2.5-1.5b-instruct-lin-v3/math_500/temp=0.5_n=4_ntokens=32768" --temperature 0.5 --n 4
+python3 generate_responses.py --model_name qwen-2.5-1.5b-instruct-lin-v4 --dataset_name math_500 --exp_dir "./data/new_evals_03_03/qwen-1.5b/qwen-2.5-1.5b-instruct-lin-v4/math_500/temp=0.5_n=4_ntokens=32768" --temperature 0.5 --n 4

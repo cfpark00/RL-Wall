@@ -1,0 +1,1 @@
+python3 eval.py --model_name deepseek-r1-distill-qwen-7b --dataset_name math_500 --exp_dir "./data/baselines/deepseek-r1-distill-qwen-7b/math_500/temp=1.0_seed=none" --temperature 1.0

@@ -1,0 +1,22 @@
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=0.2_seed=none" --temperature 0.2 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=3.0_seed=none" --temperature 3.0 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=1.0_seed=none" --temperature 1.0 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=0.6_seed=none" --temperature 0.6 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=2.0_seed=none" --temperature 2.0 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=1.6_seed=none" --temperature 1.6 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=0.4_seed=none" --temperature 0.4 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=2.4_seed=none" --temperature 2.4 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=0.8_seed=none" --temperature 0.8 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=1.2_seed=none" --temperature 1.2 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=1.4_seed=none" --temperature 1.4 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=1.8_seed=none" --temperature 1.8 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=2.2_seed=none" --temperature 2.2 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=2.6_seed=none" --temperature 2.6 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=2.8_seed=none" --temperature 2.8 --max_tokens 2048
+
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=0.15_seed=none" --temperature 0.15 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=0.1_seed=none" --temperature 0.1 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=0.05_seed=none" --temperature 0.05 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=0.025_seed=none" --temperature 0.025 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=0.01_seed=none" --temperature 0.01 --max_tokens 2048
+python3 eval.py --model_name qwen-2.5-1.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-1.5b-instruct/math_500/temp_scale/temp=0.005_seed=none" --temperature 0.005 --max_tokens 2048

@@ -1,0 +1,1 @@
+python3 eval.py --model_name qwen-2.5-math-0.5b-instruct --dataset_name math_500 --exp_dir "./data/baselines/qwen-2.5-math-0.5b-instruct/math_500/temp=1.0_seed=none" --temperature 1.0  --max_tokens 2048

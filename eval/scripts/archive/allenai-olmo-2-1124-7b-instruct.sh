@@ -1,0 +1,1 @@
+python3 eval.py --model_name allenai-olmo-2-1124-7b-instruct --dataset_name math_500 --exp_dir "./data/baselines/allenai-olmo-2-1124-7b-instruct/math_500/temp=1.0_seed=none"
