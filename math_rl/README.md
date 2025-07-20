@@ -1,188 +1,123 @@
-# Decomposing Elements of Problem Solving: What "Math" Does RL Teach?
+## GRPO Math Reasoning Evaluation and Analysis
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+This folder contains analysis scripts for evaluating mathematical reasoning capabilities of LLMs trained with GRPO. The codebase is organized into three main folders:
 
-This repository contains the code and experiments for the research paper "Decomposing Elements of Problem Solving: What 'Math' Does RL Teach?" which investigates how reinforcement learning (RL) affects mathematical reasoning capabilities in large language models.
+## 📁 Folder Structure
 
-## 🔬 Research Overview
+### `analysis/` - Error Analysis and Human Annotation
 
-Mathematical reasoning tasks have become prominent benchmarks for assessing LLM reasoning capabilities, especially with RL methods like GRPO showing significant performance gains. However, accuracy metrics alone don't reveal which problem-solving skills have been internalized.
+This folder contains analysis scripts and data needed to reproduce the plots that analyze model failure modes and the effectiveness of GRPO training.
 
-### Key Contributions
+#### Key Scripts:
 
-1. **Reasoning Decomposition Framework**: We propose decomposing math problem solving into three fundamental capabilities:
-   - **Plan**: Mapping questions to sequences of solution steps
-   - **Execute**: Correctly performing solution steps  
-   - **Verify**: Identifying the correctness of a solution
+**`human_annotation.py`** - Plan vs Execution Failure Analysis
+- Creates batch requests to GPT models for grading mathematical solutions on two key dimensions:
+  1. **Plan/Direction**: Does the solution attempt the correct approach? (YES/NO)
+  2. **Execution**: Does the solution correctly execute the required steps without critical math errors? (YES/NO/N.A.)
+- Uses OpenAI batch API to efficiently process large numbers of responses
+- Generates ground truth solution summaries using GPT-4
+- Produces comparative analysis between pre-GRPO and post-GRPO models
+- Key functions:
+  - `gpt_idea_summary()`: Generates high-level solution approaches using GPT-4
+  - `batch_request_json_creation()`: Creates batch grading requests
+  - `compare_models()`: Analyzes plan vs execution success rates across model sizes
 
-2. **Empirical Analysis of RL**: We show that GRPO primarily improves execution on known problems through a "temperature distillation" effect, but fails to solve previously unsolved problems, revealing a "coverage wall".
+**`execution_breakdown.py`** - Detailed Error Categorization
+- Builds on the human annotation analysis by providing deeper categorization of execution failures
+- For responses that failed execution, categorizes mistakes into three types:
+  1. **Basic mathematical factual mistakes** (elementary vs high school level)
+  2. **Basic logic mistakes** (non-mathematical reasoning errors)
+- Uses a detailed rubric to distinguish between computational errors and fundamental conceptual mistakes
+- Generates mistake reduction plots showing GRPO's impact on different error types
+- Key functions:
+  - `batch_request_json_creation()`: Creates detailed rubric-based grading requests
+  - `plot_mistake_drops()`: Visualizes mistake reduction across categories
 
-3. **Synthetic Validation**: We construct a minimal synthetic task that replicates our empirical findings and identifies conditions under which RL can overcome the coverage wall.
+**`plot.py`** - Visualization and Plotting Functions
+- Contains various plotting functions that reproduce the coverage-wall and temperature distillation plots from the paper
+- Generates publication-ready figures with seaborn styling
+- Key functions:
+  - `solving_probs_temp()`: Creates temperature vs precision coverage plots
+  - `solving_probs_matched()`: Generates matched problem comparison plots
+  - `subject_vs_acc()`: Creates subject-wise accuracy heatmaps
+  - `compare_models()`: Produces model comparison visualizations
 
-### Key Findings
+### `eval/` - Model Evaluation Pipeline
 
-- **Temperature Distillation**: GRPO makes correct solutions more likely regardless of sampling temperature, enhancing execution robustness
-- **Coverage Wall**: RL fails to help models solve fundamentally new problems due to insufficient planning skills
-- **Execution Enhancement**: RL primarily strengthens execution by reducing spurious correlations and basic errors
+This folder contains the complete evaluation pipeline for generating model responses and computing performance metrics.
 
-## 📁 Repository Structure
+#### Key Scripts:
 
-```
-RL-Wall/
-├── eval/                    # Evaluation framework and utilities
-│   ├── utils.py            # Core evaluation utilities and verifiers
-│   ├── generate_responses.py # Response generation script
-│   ├── extract_correct.py   # Answer extraction utilities
-│   └── scripts/            # Collection of evaluation scripts for different models
-├── synthetic/              # Synthetic environment for controlled experiments
-│   ├── make_data_synthetic_v5.ipynb  # Synthetic data generation notebook
-│   ├── make_models_v5.py   # Synthetic model creation script
-│   ├── eval_f.py & eval_t.py # Evaluation scripts for synthetic models
-│   ├── configs/            # YAML training configurations (v5_1.yaml, etc.)
-│   ├── sft/               # Supervised fine-tuning code
-│   │   ├── run_sft_accelerate.py # SFT training script
-│   │   └── lm_tools.py    # Language model utilities
-│   └── rl/                # Reinforcement learning setup (VERL framework)
-├── tree_vis/              # Solution tree visualization tools
-│   ├── make_tree_04_14.ipynb # Interactive tree visualization notebook
-│   ├── trees/             # Generated solution tree files
-│   └── *.html            # Example visualization files
-├── math_rl/               # Mathematical RL experiments (minimal content)
-└── README.md
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-The repository uses several dependencies. You'll need:
-
+**`generate_responses.py`** - Response Generation
+- Uses VLLM for efficient model inference with support for various sampling strategies
+- Outputs: JSON files containing problems, solutions, and model responses
+- Command line interface for easy experimentation:
 ```bash
-# Core dependencies
-pip install torch transformers datasets numpy pandas
-pip install vllm accelerate wandb tqdm
-pip install sympy pylatexenc
-
-# For RL training (VERL framework is included)
-cd synthetic/rl/verl
-pip install -e .
-
-# For evaluation with GPT-based verification
-pip install openai
+python generate_responses.py --model_name qwen-2.5-1.5b-instruct \
+                            --dataset_name math_500 \
+                            --temperature 1.0 \
+                            --n 64
 ```
 
-## 📋 What's Actually Here
+**`extract_solving_probs.py`** - Performance Metrics Computation
+- Computes solving probabilities and pass@k metrics from model responses
+- Implements unbiased pass@k estimation using combinatorial methods
+- Key functions:
+  - `estimate_pass_at_k()`: Unbiased estimator for pass@k on single problems
+  - `compute_pass_at_k_batch()`: Batch computation across multiple problems
+  - `compute_solving_probs()`: Extracts precision rates from response correctness
+  - `plot_solving_probs()`: Creates delta plots showing GRPO improvements
 
-### Evaluation Framework (`eval/`)
+**`plot_temp_covg.py`** - Coverage-Wall Analysis
+- Creates the main (three-panel) coverage-wall (Pre-GRPO coverage, Post-GRPO coverage, and Pass@K comparison) and temperature distillation plots
+- Shows how model performance varies with temperature and sampling strategies
 
-- **`utils.py`**: Comprehensive utilities with multiple answer verifiers (VERL, SymPy, GPT-based)
-- **`generate_responses.py`**: Script for generating model responses with various parameters
-- **`extract_correct.py`**: Utilities for extracting and processing answers
-- **`scripts/`**: Collection of bash scripts for running evaluations (e.g., `qwen-1.5b-instruct_temps.sh`)
+**`utils.py`** - Utility Functions and Configurations
+- Contains essential utility functions for the evaluation pipeline:
+  - `get_model_path()`: Maps model names to HuggingFace paths or local checkpoints
+  - `get_dataset()`: Loads and preprocesses mathematical reasoning datasets
+  - `get_prompt_format()`: Handles different prompting strategies
+  - Model path mappings for 50+ model variants including:
+    - Base models (Qwen-2.5, LLaMA-3.1, DeepSeek, etc.)
+    - GRPO-trained checkpoints at different training steps
+    - Math-specialized models
+- Mathematical answer verification and extraction functions
 
-### Synthetic Environment (`synthetic/`)
+#### Data Organization:
+- `data/`: Contains generated responses organized by model, dataset, and sampling configuration
+  - Structure: `{model_name}/{dataset_name}/temp={temperature}_seed={seed}/`
+  - Each directory contains `data.json` with responses and `config.yaml` with generation parameters
 
-- **`make_data_synthetic_v5.ipynb`**: Jupyter notebook for creating synthetic datasets
-- **`make_models_v5.py`**: Script for synthetic model creation
-- **`eval_f.py`** and **`eval_t.py`**: Evaluation scripts for synthetic experiments
-- **`configs/`**: YAML configuration files (v5_1.yaml through v5_17.yaml)
-- **`sft/run_sft_accelerate.py`**: Training script using Accelerate
-- **`rl/verl/`**: Complete VERL framework for RL training
+### `verl_scripts/` - GRPO Training Configurations
 
-### Tree Visualization (`tree_vis/`)
+Contains VERL config files used for GRPO training, provided for reproducibility.
 
-- **`make_tree_04_14.ipynb`**: Notebook for generating interactive solution trees
-- **Various HTML files**: Pre-generated visualization examples
-- **`trees.json`**: Solution tree data
+## 🚀 Quick Start
 
-## 🧪 Running Experiments
-
-### Basic Evaluation
-
-You can generate responses using the evaluation framework:
-
+### 1. Generate Model Responses
 ```bash
-cd eval
-python generate_responses.py \
-    --model_name qwen-2.5-1.5b-instruct \
-    --dataset_name math_500 \
-    --exp_dir ./results/test \
-    --temperature 0.1 \
-    --n 64
+cd eval/
+python generate_responses.py --model_name qwen-2.5-1.5b-instruct \
+                            --dataset_name math_500 \
+                            --temperature 1.0 \
+                            --n 64 \
+                            --seed 0
 ```
 
-### Synthetic Experiments
-
-The synthetic environment can be explored through the notebooks:
-
+### 2. Extract Performance Metrics
 ```bash
-cd synthetic
-# Open and run the data generation notebook
-jupyter notebook make_data_synthetic_v5.ipynb
-
-# Train a synthetic model (requires proper setup)
-python sft/run_sft_accelerate.py configs/v5_1.yaml
+python extract_solving_probs.py  # Modify script to point to your data files
 ```
 
-### Solution Tree Visualization
-
+### 3. Create Analysis Plots
 ```bash
-cd tree_vis
-# Open the visualization notebook
-jupyter notebook make_tree_04_14.ipynb
+cd analysis/
+python plot.py  # Generates various performance comparison plots
 ```
 
-## 📊 Key Components
-
-### Evaluation Utilities
-
-The `eval/utils.py` file contains:
-- Multiple answer verification methods
-- Support for various model architectures (Qwen, Llama, DeepSeek, etc.)
-- Batch processing capabilities
-- Temperature and sampling analysis tools
-
-### Synthetic Environment Design
-
-The synthetic setup models mathematical reasoning as:
-- State-action navigation through transition tables
-- Built-in spurious correlations for robustness testing
-- Configurable complexity and dimensions
-
-### Visualization Tools
-
-- Interactive HTML-based solution tree visualization
-- Statistical analysis of model behavior patterns
-- Tools for comparing pre/post-RL model performance
-
-## 📈 Research Findings
-
-Based on the code and experiments in this repository:
-
-1. **GRPO improves precision** through temperature distillation but **doesn't increase coverage**
-2. **Models plan well** but **struggle with execution** on high school math
-3. **RL reduces basic errors** but doesn't teach new mathematical knowledge
-4. **Coverage improvements are possible** under specific conditions (less spurious correlation, more RL data)
-
-## ⚠️ Repository Status
-
-This repository contains the research code and experimental setup. Some components may require additional setup or configuration to run fully. The code represents the state used for the research paper and may need adaptation for different environments or use cases.
-
-## 📝 Citation
-Coming Soon
+### 4. Run Human Annotation Analysis
+```bash
+python human_annotation.py --model_size 1.5b --result_file pre_temp=1.0_n=64.json
+```
 
 
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- VERL framework for efficient RL training
-- MATH and GSM8K datasets for evaluation
-- Qwen model family for base models
-
----
-
-For questions about the code or experiments, please open a GitHub issue.
